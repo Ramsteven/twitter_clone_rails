@@ -1,8 +1,8 @@
-<%= name = current_user.present? ? current_user.email : "Stanger" %>
+<% name = current_user.present? ? current_user.email : "Stanger" %>
   <h1>Home <%= name%></h1>
   <p>Find me in app/views/home/index.html.erb</p>
   <% if current_user.present? %>
-    <em> followers <%= current_user.followees.count %></em>
-    <em> following <%= current_user.followers.count %></em><br>
+    <%=link_to "followers #{current_user.followers.count}", followers_path %>
+    <%=link_to "followees #{current_user.followees.count}", followees_path %> <br>
     <%= link_to "Tweet", new_tweet_path, class: "btn btn-info" %>
   <% end %>

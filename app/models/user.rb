@@ -25,6 +25,7 @@ class User < ApplicationRecord
   # table.
   has_many :followers, through: :followee_followships
 
+
   def follow(user)
     followees << user
   end
@@ -32,4 +33,9 @@ class User < ApplicationRecord
   def unfollow(followed_user)
     followees.delete followed_user
   end
+
+  def following?(other_user)
+    followees.include?(other_user)
+  end
+
 end

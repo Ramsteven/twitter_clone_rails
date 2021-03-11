@@ -1,0 +1,6 @@
+<%= form_with(model:
+current_user.follower_followships.find_by(followee_id:
+c.id),
+html: { method: :delete }, local: true) do |f| %>
+  <%= f.submit "Unfollow", class: "btn" %>
+<% end %>
