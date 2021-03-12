@@ -1,5 +1,5 @@
 <%= form_with model: @tweet do |f| %>
   <%= f.label :body, "Tweet" %><br>
-  <%= f.text_field :body , placeholder: "write you tweet"%>
+  <%= f.text_area :body , placeholder: "write you tweet"%></br>
   <%= f.submit "Post Tweet" %>
 <% end %>
