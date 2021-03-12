@@ -1,16 +1,21 @@
 class UsersController < ApplicationController
     def index
-      @users = User.all
+      @users = User.all.order!(fullname: :asc).paginate(page: params[:page], per_page: 10)
     end
 
     def followees
-      @followees = current_user.followees
+      @user = User.find(params[:id])
+      @followees = @user.followees.order!(fullname: :asc).paginate(page: params[:page], per_page: 10)
     end
 
     def followers
-      @followers = current_user.followers
+      @user = User.find(params[:id])
+      @followers = @user.followers.order!(fullname: :asc).paginate(page: params[:page], per_page: 10)
     end
-
+  
+    def follow_username
+      @user = User.all
+    end
 
     def follow(user)
       followees << user

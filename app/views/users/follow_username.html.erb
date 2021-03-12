@@ -1,0 +1,5 @@
+<%= form_with(model: current_user.followee_followships.build,
+local: true) do |f| %>
+  <div><%= f.text_field :followee_id, @user  %></div>
+  <%= f.submit "Follow", class: "btn btn-primary" %>
+<% end %>

@@ -1,0 +1,14 @@
+<div class="container text-center">
+  <h1> feed </h1>
+   <div class="flickr_pagination d-flex justify-content-center">
+      <%= will_paginate @feed %>
+    </div>
+
+  <% @feed.each do |tweet| %>    
+    <%= render "card_tweet", tweet: tweet %>
+  <%end%>
+  <div class="flickr_pagination d-flex justify-content-center">
+      <%= will_paginate @feed %>
+    </div>
+
+</div>

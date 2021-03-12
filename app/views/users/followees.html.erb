@@ -1,3 +1,18 @@
-<% @followees.each do | followee | %>
-  <p><%= followee.email %></p>
-<% end %>
+<div class="container text-center">
+  <%# <%= link_to "Follower another user", follow_username_path %1> %>
+  <div class="flickr_pagination d-flex justify-content-center">
+    <%= will_paginate @followees %>
+  </div>
+  <div class="d-flex flex-wrap">
+    <% @followees.each do | followee | %>
+      <%if current_user != followee %>
+        <%= render 'card', c: followee %>
+      <% else %>
+        <p> You currently are followee to <%= @user.username %></p> 
+      <% end %>
+    <% end %>
+  </div>
+  <div class="flickr_pagination d-flex justify-content-center">
+    <%= will_paginate @followees %>
+  </div>
+</div>
