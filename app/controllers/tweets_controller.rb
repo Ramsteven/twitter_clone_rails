@@ -1,22 +1,22 @@
 class TweetsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     ids = []
     ids.append(current_user.id)
-      current_user.followees.each do |user|
+    current_user.followees.each do |user|
         ids.append(user.id)  
-      end
-    @feed = Tweet.where(user_id: ids).order!(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    end
+    @feed = set_paginate_order(Tweet.where(user_id: ids))
   end
-
+  
   def new
     @tweet = Tweet.new
-  end 
-
+  end
+ 
   def show 
     @user = User.find(params[:id])
-    @tweets = @user.tweets.order!(created_at: :desc).paginate(page: params[:page], per_page: 10)
-   
+    @tweets =  set_paginate_order(@user.tweets)
   end
 
 
@@ -35,5 +35,10 @@ class TweetsController < ApplicationController
 
   def tweet_params
     params.require(:tweet).permit(:body)
-  end 
+  end
+
+   def set_paginate_order(user)
+      user.order!(created_at: :desc).paginate(page: params[:page], per_page: 10)
+    end
+
 end

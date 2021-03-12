@@ -1,5 +1,5 @@
 class FollowshipsController < ApplicationController
-  before_action :user_signed_in?
+  before_action :authenticate_user!
 
   def create
     user = User.find(params[:followee_id])
