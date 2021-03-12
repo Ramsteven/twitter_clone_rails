@@ -16,6 +16,11 @@
         <li class="nav-item">
           <%= link_to "Sign Up", new_user_registration_path, class:"nav-link" %>
         </li>
+
+        <li class="nav-item">
+          <%= link_to "Users", users_path, class:"nav-link" %>
+        </li>
+
       <% else %>
 
        <li class="nav-item active">
@@ -25,7 +30,7 @@
 
 
         <li class="nav-item active">
-          <%= link_to "[#{current_user.username}] tweets", tweet_path(current_user) , class:"nav-link" %>
+          <%= link_to "[#{current_user.username}] tweets", profile_path(current_user.username) , class:"nav-link" %>
         </li>
 
 

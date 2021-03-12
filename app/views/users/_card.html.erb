@@ -11,9 +11,13 @@
         <%= render 'follow', c: c %>
       <% end %>
     </div>
-    <%= link_to 'tweets', tweet_path(c), class: "btn btn-info" %>
+    <%= link_to 'tweets', profile_path(c.username), class: "btn btn-info" %>
   <% else %>
-    <%= link_to 'tweets', tweet_path(current_user), class: "btn btn-info" %>
+    <% if current_user %>
+      <%= link_to 'tweets', profile_path(current_user.username), class: "btn btn-info" %>
+    <% else %>
+      <%= link_to 'tweets', profile_path(c.username), class: "btn btn-info" %>
+    <% end %>
 
   <% end %>
 

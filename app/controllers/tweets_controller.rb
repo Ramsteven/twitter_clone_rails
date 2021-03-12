@@ -1,5 +1,5 @@
 class TweetsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
 
   def index
     ids = []
@@ -14,8 +14,8 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new
   end
  
-  def show 
-    @user = User.find(params[:id])
+  def show
+    @user = User.find_by_username(params[:username])
     @tweets =  set_paginate_order(@user.tweets)
   end
 
